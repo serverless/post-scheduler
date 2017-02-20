@@ -1,5 +1,16 @@
 # Static Site Post Scheduler
 
+## Table of Contents
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Click to expand) -->
+<details>
+<summary>Click to expand</summary>
+- [Introducing the Post Scheduler for Static Website](#introducing-the-post-scheduler-for-static-website)
+- [How does it work?](#how-does-it-work)
+- [Install Instructions](#install-instructions)
+- [Automate all the things!](#automate-all-the-things)
+</details>
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 Like many static site's we use markdown + github for all of our [blog content](https://github.com/serverless/blog/).
 
 Having content under version control comes with some great benefits:
@@ -23,19 +34,19 @@ So I thought to myself... There has got to be a better way... a better **serverl
 
 ## Introducing the Post Scheduler for Static Website
 
-The post scheduler is another serverless project that demonstrates how event driven functions can be setup and deployed to do your bidding.
+The post scheduler is a serverless project enables people running their sites on any static website generator the ability to schedule posts.
+
+For.... free!
 
 ## How does it work?
 
-1. A github webhook fires when pull requests are updated.
+1. A github webhook fires when pull requests (aka new posts) are updated.
 
 2. If the pull request comment has a comment matching `schedule(MM/DD/YYYY H:MM pm)` and the person is a collaborator on the project, the post gets scheduled for you.
 
 3. A serverless cron job runs every hour to check if a post is ready to be published
 
 4. When the post is ready to be published, the cron function automatically merges the branch into `master` and your site, if you have CI/CD built in, will redeploy itself.
-
-**Magic**
 
 ## Install Instructions
 

@@ -5,8 +5,14 @@
   "main": "handler.js",
   "author": "David Wells",
   "license": "MIT",
+  "scripts": {
+    "docs": "md-magic --path 'README.md' --ignore 'node_modules'"
+  },
   "dependencies": {
     "axios": "^0.15.3",
     "moment": "^2.17.1"
+  },
+  "devDependencies": {
+    "markdown-magic": "^0.1.13"
   }
 }
