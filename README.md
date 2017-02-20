@@ -69,7 +69,7 @@ For.... **free!** That's right, under the generous free tier of AWS you can depl
 
 3. Deploy the service with `serverless deploy`. If you need to setup serverless, please see [these install instructions](https://github.com/serverless/serverless#quick-start).
 
-4. Take the POST endpoint returned from deploy and plug it into your repositories settings in github
+4. Take the POST endpoint returned from deploy and plug it into your [repositories settings in github](https://youtu.be/b_DVXgiByec?t=1m9s)
 
   ![image](https://cloud.githubusercontent.com/assets/532272/23144203/e0dada50-f77a-11e6-8da3-7bdbcaf8f2a0.png)
 
