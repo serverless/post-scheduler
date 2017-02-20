@@ -1,0 +1,12 @@
+{
+  "name": "post-scheduler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "author": "David Wells",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "moment": "^2.17.1"
+  }
+}

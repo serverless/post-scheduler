@@ -1,0 +1,18 @@
+# dependencies
+node_modules
+.serverless
+
+# testing
+coverage
+
+# dev stage secrets
+config.dev.json
+
+# prod stage secrets
+config.prod.json
+
+
+# misc
+.DS_Store
+.env
+.idea

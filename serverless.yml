@@ -1,0 +1,73 @@
+# 'service' is the name of the service
+service: ${file(./config.${self:custom.currentStage}.json):serviceName}
+
+# 'custom' = define custom variables used elsewhere in the yaml config
+custom:
+  defaultStage: prod
+  currentStage: ${opt:stage, self:custom.defaultStage}
+  currentRegion: ${file(./config.${self:custom.currentStage}.json):region}
+  scheduledPostsTable: ${self:service}-${self:custom.currentStage}-scheduled-posts
+
+# 'provider' specifies where to deploy the service. Aka deploy to 'aws'
+provider:
+  name: aws
+  runtime: nodejs4.3
+  # ${self:custom.currentRegion} references the 'custom' field in this file
+  # it grabs the 'currentRegion' key and places it in the 'region' key defined below
+  region: ${self:custom.currentRegion}
+  stage: ${self:custom.currentStage}
+  # 'environment' is where you define any process.env environment variables needed in code
+  environment:
+    GITHUB_WEBHOOK_SECRET: ${file(./config.${self:custom.currentStage}.json):GITHUB_WEBHOOK_SECRET}
+    GITHUB_API_TOKEN: ${file(./config.${self:custom.currentStage}.json):GITHUB_API_TOKEN}
+    GITHUB_USERNAME: ${file(./config.${self:custom.currentStage}.json):GITHUB_USERNAME}
+    GITHUB_REPO: ${file(./config.${self:custom.currentStage}.json):GITHUB_REPO}
+    SCHEDULED_POSTS_TABLE: ${self:custom.scheduledPostsTable}
+
+  # Set IAM permissions for the functions
+  iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:DescribeTable
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+      - dynamodb:BatchWriteItem
+    # Allow function to access only this database
+    Resource: [
+      "arn:aws:dynamodb:${self:custom.currentRegion}:*:table/${self:custom.scheduledPostsTable}"
+      ]
+
+# 'functions' references all the functions and events in the service
+functions:
+  githubWebhookListener:
+    handler: handler.githubWebhookListener
+    events:
+      - http:
+          path: webhook
+          method: post
+          cors: true
+  publishScheduledPostCron:
+    handler: handler.publishScheduledPost
+    events:
+      - schedule: rate(1 hour)
+
+# 'resources' defines any infrastructure needed for the service aka a database
+resources:
+  Resources:
+    ScheduledPostsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.scheduledPostsTable}
+        AttributeDefinitions:
+          - AttributeName: number
+            AttributeType: N
+        KeySchema:
+          - AttributeName: number
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
