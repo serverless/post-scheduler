@@ -21,7 +21,7 @@ While not the end of the world, it was an inconvenience for our content team nee
 
 So I thought to myself... There has got to be a better way... a better **serverless** way.
 
-## Introducing the post-scheduler
+## Introducing the Post Scheduler for Static Website
 
 The post scheduler is another serverless project that demonstrates how event driven functions can be setup and deployed to do your bidding.
 
@@ -58,7 +58,7 @@ The post scheduler is another serverless project that demonstrates how event dri
 
 4. Take the POST endpoint returned from deploy and plug it into your repositories settings in github
 
-![image](https://cloud.githubusercontent.com/assets/532272/23144203/e0dada50-f77a-11e6-8da3-7bdbcaf8f2a0.png)
+  ![image](https://cloud.githubusercontent.com/assets/532272/23144203/e0dada50-f77a-11e6-8da3-7bdbcaf8f2a0.png)
 
   1. Add your github webhook listener URL into the `Payload URL` and choose type `application/json`
 
