@@ -19,7 +19,7 @@ Until now, publishing a post was a manual process of merging a post branch into 
 
 While not the end of the world, it was an inconvenience for our content team needing to be awake super early to manually click a button.
 
-I thought to myself, there has got to be a better way... a better **serverless** way.
+So I thought to myself... There has got to be a better way... a better **serverless** way.
 
 ## Introducing the post-scheduler
 
@@ -29,13 +29,13 @@ The post scheduler is another serverless project that demonstrates how event dri
 
 1. A github webhook fires when pull requests are updated.
 
-2. If the pull request comment has the `schedule(MM/DD/YYYY H:MM pm)` pattern in it and the person is a collaborator on the project, the post gets scheduled
+2. If the pull request comment has a comment matching `schedule(MM/DD/YYYY H:MM pm)` and the person is a collaborator on the project, the post gets scheduled for you.
 
 3. A serverless cron job runs every hour to check if a post is ready to be published
 
-4. When the post is ready to be published, the cron function automatically merges the branch into `master`
+4. When the post is ready to be published, the cron function automatically merges the branch into `master` and your site, if you have CI/CD built in, will redeploy itself.
 
-Thats it!
+**Magic**
 
 ## Install Instructions
 
@@ -70,7 +70,7 @@ Thats it!
 
 5. Submit a PR and give it a go!
 
-## Recap
+## Automate all the things!
 
 **Before:**
 
@@ -79,8 +79,3 @@ We needed someone to manually merge a post into the `master` branch of our site.
 **After:**
 
 We are sipping margaritas on the beach while posts are being published automatically. **Yay 🎉***
-
-# Potential Names
-
-- lineup
-- pipeline
