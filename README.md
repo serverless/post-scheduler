@@ -1,15 +1,17 @@
 # Static Site Post Scheduler
 
-## Table of Contents
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Click to expand) -->
 <details>
 <summary>Click to expand</summary>
-- [Introducing the Post Scheduler for Static Website](#introducing-the-post-scheduler-for-static-website)
+- [Background](#background)
+- [Post Scheduler for Static Website](#post-scheduler-for-static-website)
 - [How does it work?](#how-does-it-work)
 - [Install Instructions](#install-instructions)
 - [Automate all the things!](#automate-all-the-things)
 </details>
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+## Background
 
 Like many static site's we use markdown + github for all of our [blog content](https://github.com/serverless/blog/).
 
@@ -32,11 +34,11 @@ While not the end of the world, it was an inconvenience for our content team nee
 
 So I thought to myself... There has got to be a better way... a better **serverless** way.
 
-## Introducing the Post Scheduler for Static Website
+## Post Scheduler for Static Website
 
 The post scheduler is a serverless project enables people running their sites on any static website generator the ability to schedule posts.
 
-For.... free!
+For.... **free!** That's right, under the generous free tier of AWS you can deploy this project for your site and run well under the free tier limits.
 
 ## How does it work?
 
