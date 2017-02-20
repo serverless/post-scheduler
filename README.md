@@ -37,7 +37,7 @@ The post scheduler is another serverless project that demonstrates how event dri
 
 Thats it!
 
-## install
+## Install Instructions
 
 1. Clone down the repository and run `npm install` to instal the dependencies
 
@@ -54,9 +54,21 @@ Thats it!
 }
 ```
 
-3. Deploy the service with `serverless deploy`
+3. Deploy the service with `serverless deploy`. If you need to setup serverless, please see [these install instructions](https://github.com/serverless/serverless#quick-start).
 
-4. Take the POST endpoint returned from deploy and plug it into your repositories settings
+4. Take the POST endpoint returned from deploy and plug it into your repositories settings in github
+
+![image](https://cloud.githubusercontent.com/assets/532272/23144203/e0dada50-f77a-11e6-8da3-7bdbcaf8f2a0.png)
+
+  1. Add your github webhook listener URL into the `Payload URL` and choose type `application/json`
+
+  2. Plugin your `GITHUB_WEBHOOK_SECRET` defined in your config file
+
+  3. Select which github events will trigger your webhook
+
+  4. Select Issue comments, these will be where you insert `schedule(MM/DD/YYYY H:MM pm)` comments in a given PR
+
+5. Submit a PR and give it a go!
 
 ## Recap
 
