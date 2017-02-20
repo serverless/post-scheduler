@@ -43,16 +43,16 @@ The post scheduler is another serverless project that demonstrates how event dri
 
 2. Duplicate `config.prod.example.json` into a new file called `config.prod.json` and insert your Github username, API token, and webhook secret
 
-```json
-{
-  "serviceName": "blog-scheduler",
-  "region": "us-west-2",
-  "GITHUB_REPO": "serverless/blog",
-  "GITHUB_WEBHOOK_SECRET": "YOUR_GITHUB_WEBHOOK_SECRET_HERE",
-  "GITHUB_API_TOKEN": "YOUR_GITHUB_API_TOKEN_HERE",
-  "GITHUB_USERNAME": "YOUR_GITHUB_USERNAME_HERE"
-}
-```
+  ```json
+  {
+    "serviceName": "blog-scheduler",
+    "region": "us-west-2",
+    "GITHUB_REPO": "serverless/blog",
+    "GITHUB_WEBHOOK_SECRET": "YOUR_GITHUB_WEBHOOK_SECRET_HERE",
+    "GITHUB_API_TOKEN": "YOUR_GITHUB_API_TOKEN_HERE",
+    "GITHUB_USERNAME": "YOUR_GITHUB_USERNAME_HERE"
+  }
+  ```
 
 3. Deploy the service with `serverless deploy`. If you need to setup serverless, please see [these install instructions](https://github.com/serverless/serverless#quick-start).
 
