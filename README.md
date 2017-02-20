@@ -37,6 +37,27 @@ The post scheduler is another serverless project that demonstrates how event dri
 
 Thats it!
 
+## install
+
+1. Clone down the repository and run `npm install` to instal the dependencies
+
+2. Duplicate `config.prod.example.json` into a new file called `config.prod.json` and insert your Github username, API token, and webhook secret
+
+```json
+{
+  "serviceName": "blog-scheduler",
+  "region": "us-west-2",
+  "GITHUB_REPO": "serverless/blog",
+  "GITHUB_WEBHOOK_SECRET": "YOUR_GITHUB_WEBHOOK_SECRET_HERE",
+  "GITHUB_API_TOKEN": "YOUR_GITHUB_API_TOKEN_HERE",
+  "GITHUB_USERNAME": "YOUR_GITHUB_USERNAME_HERE"
+}
+```
+
+3. Deploy the service with `serverless deploy`
+
+4. Take the POST endpoint returned from deploy and plug it into your repositories settings
+
 ## Recap
 
 **Before:**

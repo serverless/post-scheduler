@@ -1,4 +1,4 @@
-const publishPostCron = require('./lib/publishScheduledPost')
+const publishScheduledPost = require('./lib/publishScheduledPost')
 const githubWebhookListener = require('./lib/webhookListener')
 
 /* Function that listens for github webhook events */
