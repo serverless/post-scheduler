@@ -60,7 +60,7 @@ For.... **free!** That's right, under the generous free tier of AWS you can depl
 
 ### Cron Job Architecture
 
-![cloudcraft - post scheduler webhook](https://cloud.githubusercontent.com/assets/532272/23387076/2e7960b2-fd0f-11e6-88da-49517b27d8ae.png)
+![cloudcraft - post scheduler cron setup](https://cloud.githubusercontent.com/assets/532272/23388042/e129772e-fd14-11e6-96ca-ff23a019a51e.png)
 
 ## Install Instructions
 
