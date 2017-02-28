@@ -1,4 +1,6 @@
-![post-scheduler](https://cloud.githubusercontent.com/assets/532272/23386639/779ce26c-fd0c-11e6-9e54-f33281e17719.jpg)
+<p align="center">
+  <img width="415" height="204" src="https://cloud.githubusercontent.com/assets/532272/23386639/779ce26c-fd0c-11e6-9e54-f33281e17719.jpg">
+</p>
 
 # Static Site Post Scheduler
 
