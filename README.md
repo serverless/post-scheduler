@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="415" height="204" src="https://cloud.githubusercontent.com/assets/532272/23386639/779ce26c-fd0c-11e6-9e54-f33281e17719.jpg">
+</p>
+
 # Static Site Post Scheduler
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Click to expand) -->
@@ -50,6 +54,14 @@ For.... **free!** That's right, under the generous free tier of AWS you can depl
 
 4. When the post is ready to be published, the cron function automatically merges the branch into `master` and your site, if you have CI/CD built in, will redeploy itself.
 
+### Github Webhook Architecture
+
+![cloudcraft - post scheduler webhook](https://cloud.githubusercontent.com/assets/532272/23387076/2e7960b2-fd0f-11e6-88da-49517b27d8ae.png)
+
+### Cron Job Architecture
+
+![cloudcraft - post scheduler cron setup](https://cloud.githubusercontent.com/assets/532272/23388042/e129772e-fd14-11e6-96ca-ff23a019a51e.png)
+
 ## Install Instructions
 
 1. Clone down the repository and run `npm install` to instal the dependencies
@@ -60,6 +72,7 @@ For.... **free!** That's right, under the generous free tier of AWS you can depl
   {
     "serviceName": "blog-scheduler",
     "region": "us-west-2",
+     "TIMEZONE": "America/Los_Angeles",
     "GITHUB_REPO": "serverless/blog",
     "GITHUB_WEBHOOK_SECRET": "YOUR_GITHUB_WEBHOOK_SECRET_HERE",
     "GITHUB_API_TOKEN": "YOUR_GITHUB_API_TOKEN_HERE",
