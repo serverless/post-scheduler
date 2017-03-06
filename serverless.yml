@@ -22,6 +22,7 @@ provider:
     GITHUB_API_TOKEN: ${file(./config.${self:custom.currentStage}.json):GITHUB_API_TOKEN}
     GITHUB_USERNAME: ${file(./config.${self:custom.currentStage}.json):GITHUB_USERNAME}
     GITHUB_REPO: ${file(./config.${self:custom.currentStage}.json):GITHUB_REPO}
+    TIMEZONE: ${file(./config.${self:custom.currentStage}.json):TIMEZONE}
     SCHEDULED_POSTS_TABLE: ${self:custom.scheduledPostsTable}
 
   # Set IAM permissions for the functions
@@ -53,7 +54,11 @@ functions:
   publishScheduledPostCron:
     handler: handler.publishScheduledPost
     events:
-      - schedule: rate(1 hour)
+      - http:
+          path: test
+          method: get
+          cors: true
+      - schedule: ${file(./config.${self:custom.currentStage}.json):CRON}
 
 # 'resources' defines any infrastructure needed for the service aka a database
 resources:

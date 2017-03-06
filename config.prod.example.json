@@ -1,6 +1,8 @@
 {
   "serviceName": "blog-scheduler",
   "region": "us-west-2",
+  "TIMEZONE": "America/Los_Angeles",
+  "CRON": "cron(0 * * * ? *)",
   "GITHUB_REPO": "serverless/blog",
   "GITHUB_WEBHOOK_SECRET": "YOUR_GITHUB_WEBHOOK_SECRET_HERE",
   "GITHUB_API_TOKEN": "YOUR_GITHUB_API_TOKEN_HERE",
