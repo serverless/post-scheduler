@@ -15,34 +15,11 @@
 </details>
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-## Background
+## Post Scheduler for Static Websites
 
-Like many static site's we use markdown + github for all of our [blog content](https://github.com/serverless/blog/).
+Serverless project to schedule static site publishing.
 
-Having content under version control comes with some great benefits:
-
-- Anyone can submit content, fix typos & update anything via pull requests
-- Version control - Roll back & see the history of any given post
-- No CMS lock in - We can easily port to any static site generator
-- It's just simple - No user accounts to manage, no CMS software to upgrade, no plugins to install.
-
-All that said, there are some missing features when it comes to running your blog via a static site generator.
-
-The biggest missing feature is the ability to schedule posts to publish at a specific time.
-
-**Not anymore baby!**
-
-Until now, publishing a post was a manual process of merging a post branch into the `master` branch of our [blog repo](https://github.com/serverless/blog/).
-
-While not the end of the world, it was an inconvenience for our content team needing to be awake super early to manually click a button.
-
-So I thought to myself... There has got to be a better way... a better **serverless** way.
-
-## Post Scheduler for Static Website
-
-The post scheduler is a serverless project enables people running their sites on any static website generator the ability to schedule posts.
-
-For.... **free!** That's right, under the generous free tier of AWS you can deploy this project for your site and run well under the free tier limits.
+<img align="right" width="415" height="204" src="https://cloud.githubusercontent.com/assets/532272/23643861/250f2ca0-02b9-11e7-9a1b-94676043f2aa.gif">
 
 ## How does it work?
 
@@ -68,17 +45,30 @@ For.... **free!** That's right, under the generous free tier of AWS you can depl
 
 2. Duplicate `config.prod.example.json` into a new file called `config.prod.json` and insert your Github username, API token, and webhook secret
 
+
   ```json
+  // config.prod.json
   {
     "serviceName": "blog-scheduler",
     "region": "us-west-2",
-     "TIMEZONE": "America/Los_Angeles",
+    "TIMEZONE": "America/Los_Angeles",
+    "CRON": "cron(0 * * * ? *)",
     "GITHUB_REPO": "serverless/blog",
     "GITHUB_WEBHOOK_SECRET": "YOUR_GITHUB_WEBHOOK_SECRET_HERE",
     "GITHUB_API_TOKEN": "YOUR_GITHUB_API_TOKEN_HERE",
     "GITHUB_USERNAME": "YOUR_GITHUB_USERNAME_HERE"
   }
   ```
+
+  - `serviceName` - name of the service that will appear in your AWS account
+  - `region` - AWS region to deploy the functions and database in
+  - `TIMEZONE` - Timezone the cron runs on. See `timezone.json` for available options
+  - `CRON` - How often you want to check for scheduled posts? See the [AWS cron docs](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) or [serverless `schedule` docs](https://serverless.com/framework/docs/providers/aws/events/schedule/) for more information. **Default:** every hour on the hour
+  - `GITHUB_REPO` - The `owner/repoName` of your repository
+  - `GITHUB_WEBHOOK_SECRET` - Any string you want. This gets plugged into your webhook settings
+  - `GITHUB_API_TOKEN` - Personal access token. See below for additonal info
+  - `GITHUB_USERNAME` - Your github username. Used for requests to github
+
 
 3. Deploy the service with `serverless deploy`. If you need to setup serverless, please see [these install instructions](https://github.com/serverless/serverless#quick-start).
 
