@@ -8,12 +8,7 @@ The post scheduler is a [serverless](https://github.com/serverless/serverless) p
 
 It works with any static site setup (Jekyll, Hugo, Phenomic, Gatsby etc.)
 
-<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC) -->
-- [How does it work?](#how-does-it-work)
-  * [Github Webhook Architecture Overview](#github-webhook-architecture-overview)
-  * [Cron Job Architecture Overview](#cron-job-architecture-overview)
-- [Install Instructions](#install-instructions)
-<!-- AUTO-GENERATED-CONTENT:END -->
+[Video demo](https://www.youtube.com/watch?v=YETxuhexZY4&index=1&list=PLIIjEI2fYC-BubklemD4D51vrXHOcUOpc&t=31s)
 
 ## How does it work?
 
