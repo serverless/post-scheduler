@@ -4,17 +4,6 @@
 
 # Static Site Post Scheduler
 
-<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:collapse=true&collapseText=Click to expand) -->
-<details>
-<summary>Click to expand</summary>
-- [Background](#background)
-- [Post Scheduler for Static Website](#post-scheduler-for-static-website)
-- [How does it work?](#how-does-it-work)
-- [Install Instructions](#install-instructions)
-- [Automate all the things!](#automate-all-the-things)
-</details>
-<!-- AUTO-GENERATED-CONTENT:END -->
-
 The post scheduler is a [serverless](https://github.com/serverless/serverless) project that gives static site owners the ability to schedule posts (or other site content).
 
 <img align="right" width="500" height="313" src="https://cloud.githubusercontent.com/assets/532272/23643861/250f2ca0-02b9-11e7-9a1b-94676043f2aa.gif">
