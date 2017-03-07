@@ -55,10 +55,6 @@ functions:
     handler: handler.publishScheduledPost
     events:
       - schedule: ${file(./config.${self:custom.currentStage}.json):CRON}
-      - http:
-          path: test
-          method: get
-          cors: true
 
 # 'resources' defines any infrastructure needed for the service aka a database
 resources:
