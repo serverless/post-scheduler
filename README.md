@@ -85,7 +85,6 @@ Then [watch the scheduler setup and usage videos](https://www.youtube.com/watch?
 
 5. Submit a PR and give it a go!
 
-
 ## Contributions Welcome
 
 Have an idea on how we can improve the static site post scheduler?
