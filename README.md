@@ -35,7 +35,13 @@ The post scheduler is a [serverless](https://github.com/serverless/serverless) p
 
 ## Install Instructions
 
-[Watch setup and usage videos on youtube](https://www.youtube.com/watch?v=YETxuhexZY4&index=1&list=PLIIjEI2fYC-BubklemD4D51vrXHOcUOpc)
+You will need the [serverless framework installed and an AWS account configured](https://github.com/serverless/serverless#quick-start) on your computer to deploy this for your repo.
+
+```bash
+npm install serverless -g
+```
+
+Then [watch the scheduler setup and usage videos](https://www.youtube.com/watch?v=YETxuhexZY4&index=1&list=PLIIjEI2fYC-BubklemD4D51vrXHOcUOpc) or follow the instructions below.
 
 1. Clone down the repository and run `npm install` to instal the dependencies
 
