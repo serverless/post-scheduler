@@ -6,9 +6,16 @@
 
 The post scheduler is a [serverless](https://github.com/serverless/serverless) project that gives static site owners the ability to schedule posts (or other site content).
 
-<img align="right" width="500" height="313" src="https://cloud.githubusercontent.com/assets/532272/23643861/250f2ca0-02b9-11e7-9a1b-94676043f2aa.gif">
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC) -->
+- [How does it work?](#how-does-it-work)
+  * [Github Webhook Architecture Overview](#github-webhook-architecture-overview)
+  * [Cron Job Architecture Overview](#cron-job-architecture-overview)
+- [Install Instructions](#install-instructions)
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ## How does it work?
+
+<img align="right" width="500" height="313" src="https://cloud.githubusercontent.com/assets/532272/23643861/250f2ca0-02b9-11e7-9a1b-94676043f2aa.gif">
 
 1. A github webhook fires when pull requests (aka new posts) are updated.
 
@@ -18,11 +25,11 @@ The post scheduler is a [serverless](https://github.com/serverless/serverless) p
 
 4. When the post is ready to be published, the cron function automatically merges the branch into `master` and your site, if you have CI/CD built in, will redeploy itself.
 
-### Github Webhook Architecture
+### Github Webhook Architecture Overview
 
 ![cloudcraft - post scheduler webhook](https://cloud.githubusercontent.com/assets/532272/23387076/2e7960b2-fd0f-11e6-88da-49517b27d8ae.png)
 
-### Cron Job Architecture
+### Cron Job Architecture Overview
 
 ![cloudcraft - post scheduler cron setup](https://cloud.githubusercontent.com/assets/532272/23388042/e129772e-fd14-11e6-96ca-ff23a019a51e.png)
 

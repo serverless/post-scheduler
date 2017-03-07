@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "test-cron": "sls invoke -f publishScheduledPostCron",
-    "docs": "md-magic --path 'test.md' --ignore 'node_modules'"
+    "docs": "md-magic --path 'README.md' --ignore 'node_modules'"
   },
   "dependencies": {
     "axios": "^0.15.3",
