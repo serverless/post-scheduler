@@ -6,6 +6,8 @@
 
 The post scheduler is a [serverless](https://github.com/serverless/serverless) project that gives static site owners the ability to schedule posts (or other site content).
 
+It works with any static site setup (Jekyll, Hugo, Phenomic, Gatsby etc.)
+
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC) -->
 - [How does it work?](#how-does-it-work)
   * [Github Webhook Architecture Overview](#github-webhook-architecture-overview)
