@@ -15,11 +15,9 @@
 </details>
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-## Post Scheduler for Static Websites
+The post scheduler is a [serverless](https://github.com/serverless/serverless) project that gives static site owners the ability to schedule posts (or other site content).
 
-Serverless project to schedule static site publishing.
-
-<img align="right" width="415" height="204" src="https://cloud.githubusercontent.com/assets/532272/23643861/250f2ca0-02b9-11e7-9a1b-94676043f2aa.gif">
+<img align="right" width="500" height="313" src="https://cloud.githubusercontent.com/assets/532272/23643861/250f2ca0-02b9-11e7-9a1b-94676043f2aa.gif">
 
 ## How does it work?
 
@@ -40,6 +38,8 @@ Serverless project to schedule static site publishing.
 ![cloudcraft - post scheduler cron setup](https://cloud.githubusercontent.com/assets/532272/23388042/e129772e-fd14-11e6-96ca-ff23a019a51e.png)
 
 ## Install Instructions
+
+[Watch setup and usage videos on youtube](https://www.youtube.com/watch?v=YETxuhexZY4&index=1&list=PLIIjEI2fYC-BubklemD4D51vrXHOcUOpc)
 
 1. Clone down the repository and run `npm install` to instal the dependencies
 
@@ -85,13 +85,3 @@ Serverless project to schedule static site publishing.
   4. Select Issue comments, these will be where you insert `schedule(MM/DD/YYYY H:MM pm)` comments in a given PR
 
 5. Submit a PR and give it a go!
-
-## Automate all the things!
-
-**Before:**
-
-We needed someone to manually merge a post into the `master` branch of our site. **Boo 🙈***
-
-**After:**
-
-We are sipping margaritas on the beach while posts are being published automatically. **Yay 🎉***
