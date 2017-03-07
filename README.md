@@ -22,6 +22,8 @@ It works with any static site setup (Jekyll, Hugo, Phenomic, Gatsby etc.)
 
 4. When the post is ready to be published, the cron function automatically merges the branch into `master` and your site, if you have CI/CD built in, will redeploy itself.
 
+To cancel scheduled posts, delete the scheduled comment and it will unschedule the branch.
+
 ### Github Webhook Architecture Overview
 
 ![cloudcraft - post scheduler webhook](https://cloud.githubusercontent.com/assets/532272/23387076/2e7960b2-fd0f-11e6-88da-49517b27d8ae.png)
