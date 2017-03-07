@@ -6,14 +6,10 @@
   "author": "David Wells",
   "license": "MIT",
   "scripts": {
-    "test-cron": "sls invoke -f publishScheduledPostCron",
-    "docs": "md-magic --path 'README.md' --ignore 'node_modules'"
+    "test-cron": "sls invoke -f publishScheduledPostCron"
   },
   "dependencies": {
     "axios": "^0.15.3",
     "moment-timezone": "^0.5.11"
-  },
-  "devDependencies": {
-    "markdown-magic": "^0.1.13"
   }
 }
