@@ -84,3 +84,10 @@ Then [watch the scheduler setup and usage videos](https://www.youtube.com/watch?
   4. Select Issue comments, these will be where you insert `schedule(MM/DD/YYYY H:MM pm)` comments in a given PR
 
 5. Submit a PR and give it a go!
+
+
+## Contributions Welcome
+
+Have an idea on how we can improve the static site post scheduler?
+
+[Submit a PR](https://github.com/serverless/post-scheduler/), post an issue or tweet [@DavidWells](https://twitter.com/davidwells)
