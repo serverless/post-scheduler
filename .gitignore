@@ -1,6 +1,7 @@
 # dependencies
 node_modules
 .serverless
+.serverless.config.json
 
 # testing
 coverage
