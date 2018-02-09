@@ -1,0 +1,36 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended"
+  ],
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "generators": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "max-len": 0,
+    "semi": [2, "never"],
+    "comma-dangle" : 0,
+    "arrow-parens": 0,
+    "no-useless-escape": 0,
+    "consistent-return": 0,
+    "arrow-body-style": 0,
+    "no-underscore-dangle": 0,
+    "no-plusplus": 0,
+    "no-console": [1, {"allow": ["warn", "error"]}],
+    "no-unused-vars": [1, { "vars": "all", "args": "none" }],
+    "no-use-before-define": 0,
+    "import/newline-after-import": 0,
+    "import/extensions": 0,
+    "object-shorthand": 0,
+    "import/no-unresolved": 0,
+    "no-warning-comments": ["warn", { "terms": ["todo", "fixme", "@todo", "@fixme"], "location": "start" }]
+  }
+}

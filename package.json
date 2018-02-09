@@ -16,6 +16,8 @@
     "moment-timezone": "^0.5.11"
   },
   "devDependencies": {
-    "proto-jojo": "^0.1.2"
+    "proto-jojo": "^0.1.2",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0"
   }
 }
