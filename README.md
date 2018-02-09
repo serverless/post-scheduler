@@ -32,60 +32,61 @@ To cancel scheduled posts, delete the scheduled comment and it will unschedule t
 
 ![cloudcraft - post scheduler cron setup](https://cloud.githubusercontent.com/assets/532272/23388042/e129772e-fd14-11e6-96ca-ff23a019a51e.png)
 
-## Install Instructions
+## Setup Instructions
 
-You will need the [serverless framework installed and an AWS account configured](https://github.com/serverless/serverless#quick-start) on your computer to deploy this for your repo.
+1. **Clone down the repository & install the dependencies**
 
-```bash
-npm install serverless -g
-```
+    ```bash
+    git clone git@github.com:serverless/post-scheduler.git
 
-Then [watch the scheduler setup and usage videos](https://www.youtube.com/watch?v=YETxuhexZY4&index=1&list=PLIIjEI2fYC-BubklemD4D51vrXHOcUOpc) or follow the instructions below.
+    cd post-scheduler
 
-1. Clone down the repository and run `npm install` to instal the dependencies
+    npm install
+    ```
 
-2. Duplicate `config.prod.example.json` into a new file called `config.prod.json` and insert your Github username, API token, and webhook secret
+2. **Configure the service**
 
+    The post scheduler requires some user settings. Run the config command to configure those.
 
-  ```json
-  // config.prod.json
-  {
-    "serviceName": "blog-scheduler",
-    "region": "us-west-2",
-    "TIMEZONE": "America/Los_Angeles",
-    "CRON": "cron(0 * * * ? *)",
-    "GITHUB_REPO": "serverless/blog",
-    "GITHUB_WEBHOOK_SECRET": "YOUR_GITHUB_WEBHOOK_SECRET_HERE",
-    "GITHUB_API_TOKEN": "YOUR_GITHUB_API_TOKEN_HERE",
-    "GITHUB_USERNAME": "YOUR_GITHUB_USERNAME_HERE"
-  }
-  ```
+    ```bash
+    # configure
+    npm run config
 
-  - `serviceName` - name of the service that will appear in your AWS account
-  - `region` - AWS region to deploy the functions and database in
-  - `TIMEZONE` - Timezone the cron runs on. See `timezone.json` for available options
-  - `CRON` - How often you want to check for scheduled posts? See the [AWS cron docs](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) or [serverless `schedule` docs](https://serverless.com/framework/docs/providers/aws/events/schedule/) for more information. **Default:** every hour on the hour
-  - `GITHUB_REPO` - The `owner/repoName` of your repository
-  - `GITHUB_WEBHOOK_SECRET` - Any string you want. This gets plugged into your webhook settings
-  - `GITHUB_API_TOKEN` - Personal access token. See below for additonal info
-  - `GITHUB_USERNAME` - Your github username. Used for requests to github
+    # or run
+    ./node_modules/.bin/proto config
+    ```
 
+    Configuration values:
 
-3. Deploy the service with `serverless deploy`. If you need to setup serverless, please see [these install instructions](https://github.com/serverless/serverless#quick-start).
+    - `TABLE_NAME` - Name of database table to save scheduled posts
+    - `CRON_SCHEDULE` - How often you want to check for scheduled posts? See the [AWS cron docs](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) or [serverless `schedule` docs](https://serverless.com/framework/docs/providers/aws/events/schedule/) for more information. **Default:** every hour on the hour
+    - `TIMEZONE` - Your timezone for scheduling.
+    - `GITHUB_REPO` - The `owner/repoName` of your repository
+    - `GITHUB_WEBHOOK_SECRET` (optional) - Any string you want. This gets plugged into your webhook settings
+    - `GITHUB_API_TOKEN` - Personal access token. See below for additonal info
+    - `GITHUB_USERNAME` - Your github username. Used for requests to github
 
-4. Take the POST endpoint returned from deploy and plug it into your [repositories settings in github](https://youtu.be/b_DVXgiByec?t=1m9s)
+3. **Deploy the service**
 
-  ![image](https://cloud.githubusercontent.com/assets/532272/23144203/e0dada50-f77a-11e6-8da3-7bdbcaf8f2a0.png)
+    ```
+    npm run deploy
 
-  1. Add your github webhook listener URL into the `Payload URL` and choose type `application/json`
+    # or
+    ./node_modules/.bin/proto deploy
+    ```
 
-  2. Plugin your `GITHUB_WEBHOOK_SECRET` defined in your config file
+    If you need to setup serverless, please see [these install instructions](https://github.com/serverless/serverless#quick-start).
 
-  3. Select which github events will trigger your webhook
+4. **Submit a PR and give it a go**
 
-  4. Select Issue comments, these will be where you insert `schedule(MM/DD/YYYY H:MM pm)` comments in a given PR
+    After you have deployed the service. Submit a PR to the repo and leave a comment in this format:
 
-5. Submit a PR and give it a go!
+    ```bash
+    # format = schedule(MM/DD/YYYY H:MM pm)
+
+    # example
+    schedule(02/08/2018 8:00 PM)
+    ```
 
 ## Contributions Welcome
 
