@@ -2,6 +2,7 @@
 node_modules
 .serverless
 .serverless.config.json
+.hidden
 
 # testing
 coverage

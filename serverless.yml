@@ -1,30 +1,57 @@
 # 'service' is the name of the service
-service: ${file(./config.${self:custom.currentStage}.json):serviceName}
+service: scheduled-posts-service
 
-# 'custom' = define custom variables used elsewhere in the yaml config
-custom:
-  defaultStage: prod
-  currentStage: ${opt:stage, self:custom.defaultStage}
-  currentRegion: ${file(./config.${self:custom.currentStage}.json):region}
-  scheduledPostsTable: ${self:service}-${self:custom.currentStage}-scheduled-posts
+# Service configuration. Values needed for service to work
+config:
+  TABLE_NAME:
+    displayName: "Enter the scheduled posts dynamo table name"
+    type: string
+    required: true
+    default: 'post-scheduler-table'
+  CRON_SCHEDULE:
+    displayName: "Enter your cron timer. See http://bit.ly/cron-syntax for cron syntax docs"
+    type: string
+    required: true
+    default: 'cron(0 * * * ? *)'
+  TIMEZONE:
+    displayName: "Enter your timezone. See timezones.json for allowed values"
+    type: string
+    required: true
+    default: 'America/Los_Angeles'
+  GITHUB_USERNAME:
+    displayName: "Enter your github username"
+    type: string
+    required: true
+    default: 'DavidWells'
+  GITHUB_REPO:
+    displayName: "Enter your repo information (owner/repoName)"
+    type: string
+    required: true
+    default: 'DavidWells/components'
+  GITHUB_WEBHOOK_SECRET:
+    displayName: "Enter your webhook secret (optional)"
+    type: string
+    default: 'my-secret'
+  GITHUB_AUTH_TOKEN:
+    displayName: "Enter your github API Key"
+    type: string
+    default: 'xxxxxxxxxxxxxxxxxxx'
+    required: true
+    sensitive: true # NoEcho
+
 
 # 'provider' specifies where to deploy the service. Aka deploy to 'aws'
 provider:
   name: aws
   runtime: nodejs4.3
-  # ${self:custom.currentRegion} references the 'custom' field in this file
-  # it grabs the 'currentRegion' key and places it in the 'region' key defined below
-  region: ${self:custom.currentRegion}
-  stage: ${self:custom.currentStage}
   # 'environment' is where you define any process.env environment variables needed in code
   environment:
-    GITHUB_WEBHOOK_SECRET: ${file(./config.${self:custom.currentStage}.json):GITHUB_WEBHOOK_SECRET}
-    GITHUB_API_TOKEN: ${file(./config.${self:custom.currentStage}.json):GITHUB_API_TOKEN}
-    GITHUB_USERNAME: ${file(./config.${self:custom.currentStage}.json):GITHUB_USERNAME}
-    GITHUB_REPO: ${file(./config.${self:custom.currentStage}.json):GITHUB_REPO}
-    TIMEZONE: ${file(./config.${self:custom.currentStage}.json):TIMEZONE}
-    SCHEDULED_POSTS_TABLE: ${self:custom.scheduledPostsTable}
-
+    GITHUB_WEBHOOK_SECRET: ${config.GITHUB_WEBHOOK_SECRET}
+    GITHUB_API_TOKEN: ${config.GITHUB_AUTH_TOKEN}
+    GITHUB_USERNAME: ${config.GITHUB_USERNAME}
+    GITHUB_REPO: ${config.GITHUB_REPO}
+    TIMEZONE: ${config.TIMEZONE}
+    SCHEDULED_POSTS_TABLE: ${config.TABLE_NAME}
   # Set IAM permissions for the functions
   iamRoleStatements:
   - Effect: Allow
@@ -38,37 +65,45 @@ provider:
       - dynamodb:DeleteItem
       - dynamodb:BatchWriteItem
     # Allow function to access only this database
-    Resource: [
-      "arn:aws:dynamodb:${self:custom.currentRegion}:*:table/${self:custom.scheduledPostsTable}"
-      ]
+    Resource: { Fn::GetAtt: [ ScheduledPostsTable, Arn ] }
+
 
 # 'functions' references all the functions and events in the service
 functions:
   githubWebhookListener:
     handler: handler.githubWebhookListener
     events:
-      - http:
-          path: webhook
-          method: post
-          cors: true
+      - GitHubWebhook:
+          active: true
+          secret: ${config.GITHUB_WEBHOOK_SECRET}
+          trigger:
+            - issue_comment
   publishScheduledPostCron:
     handler: handler.publishScheduledPost
     events:
-      - schedule: ${file(./config.${self:custom.currentStage}.json):CRON}
+      - schedule: ${config.CRON_SCHEDULE}
 
 # 'resources' defines any infrastructure needed for the service aka a database
 resources:
-  Resources:
-    ScheduledPostsTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: ${self:custom.scheduledPostsTable}
-        AttributeDefinitions:
-          - AttributeName: number
-            AttributeType: N
-        KeySchema:
-          - AttributeName: number
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+  GitHubWebhook:
+    type: Github:Webhook
+    config:
+      apiToken: ${config.GITHUB_AUTH_TOKEN}
+      repository: ${config.GITHUB_REPO}
+  MyCloudformationStack:
+    type: AWS:CloudFormation
+    Resources:
+      ScheduledPostsTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+          TableName: ${config.TABLE_NAME}
+          AttributeDefinitions:
+            - AttributeName: number
+              AttributeType: N
+          KeySchema:
+            - AttributeName: number
+              KeyType: HASH
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+
