@@ -8,7 +8,14 @@ The post scheduler is a [serverless](https://github.com/serverless/serverless) p
 
 It works with any static site setup (Jekyll, Hugo, Phenomic, Gatsby etc.)
 
-[Video demo](https://www.youtube.com/watch?v=YETxuhexZY4&index=1&list=PLIIjEI2fYC-BubklemD4D51vrXHOcUOpc&t=31s)
+<!-- AUTO-GENERATED-CONTENT:START (TOC) -->
+- [How does it work?](#how-does-it-work)
+- [Setup Instructions](#setup-instructions)
+- [Architecture](#architecture)
+  * [Github Webhook Function](#github-webhook-function)
+  * [Cron Job Function](#cron-job-function)
+- [Contributions Welcome](#contributions-welcome)
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ## How does it work?
 
@@ -23,14 +30,6 @@ It works with any static site setup (Jekyll, Hugo, Phenomic, Gatsby etc.)
 4. When the post is ready to be published, the cron function automatically merges the branch into `master` and your site, if you have CI/CD built in, will redeploy itself.
 
 To cancel scheduled posts, delete the scheduled comment and it will unschedule the branch.
-
-### Github Webhook Architecture Overview
-
-![cloudcraft - post scheduler webhook](https://cloud.githubusercontent.com/assets/532272/23387076/2e7960b2-fd0f-11e6-88da-49517b27d8ae.png)
-
-### Cron Job Architecture Overview
-
-![cloudcraft - post scheduler cron setup](https://cloud.githubusercontent.com/assets/532272/23388042/e129772e-fd14-11e6-96ca-ff23a019a51e.png)
 
 ## Setup Instructions
 
@@ -87,6 +86,20 @@ To cancel scheduled posts, delete the scheduled comment and it will unschedule t
     # example
     schedule(02/08/2018 8:00 PM)
     ```
+
+## Architecture
+
+### Github Webhook Function
+
+![cloudcraft - post scheduler webhook](https://cloud.githubusercontent.com/assets/532272/23387076/2e7960b2-fd0f-11e6-88da-49517b27d8ae.png)
+
+### Cron Job Function
+
+![cloudcraft - post scheduler cron setup](https://cloud.githubusercontent.com/assets/532272/23388042/e129772e-fd14-11e6-96ca-ff23a019a51e.png)
+
+
+[Video demo](https://www.youtube.com/watch?v=YETxuhexZY4&index=1&list=PLIIjEI2fYC-BubklemD4D51vrXHOcUOpc&t=31s)
+
 
 ## Contributions Welcome
 
