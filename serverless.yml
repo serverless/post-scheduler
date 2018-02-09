@@ -43,7 +43,7 @@ config:
 # 'provider' specifies where to deploy the service. Aka deploy to 'aws'
 provider:
   name: aws
-  runtime: nodejs4.3
+  runtime: nodejs6.10
   # 'environment' is where you define any process.env environment variables needed in code
   environment:
     GITHUB_WEBHOOK_SECRET: ${config.GITHUB_WEBHOOK_SECRET}
@@ -106,4 +106,3 @@ resources:
           ProvisionedThroughput:
             ReadCapacityUnits: 1
             WriteCapacityUnits: 1
-
