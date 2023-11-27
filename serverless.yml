@@ -11,7 +11,7 @@ custom:
 # 'provider' specifies where to deploy the service. Aka deploy to 'aws'
 provider:
   name: aws
-  runtime: nodejs4.3
+  runtime: nodejs16.x
   # ${self:custom.currentRegion} references the 'custom' field in this file
   # it grabs the 'currentRegion' key and places it in the 'region' key defined below
   region: ${self:custom.currentRegion}
